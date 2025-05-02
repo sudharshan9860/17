@@ -1,0 +1,102 @@
+/* ORCALEX Brand Colors */
+:root {
+  --orcalex-light: #00c4d6;   /* Light teal */
+  --orcalex-medium: #0088b2;  /* Medium blue */
+  --orcalex-dark: #1a4488;    /* Dark blue */
+  --orcalex-gradient: linear-gradient(to right, var(--orcalex-light), var(--orcalex-dark));
+  --orcalex-gradient-vertical: linear-gradient(to bottom, var(--orcalex-light), var(--orcalex-dark));
+  
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --sidebar-bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --border-light: rgba(0, 196, 214, 0.2);
+}
+
+/* Layout Styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.custom-navbar {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+}
+
+.main-navigation {
+  background-color: var(--orcalex-dark);
+}
+
+.top-header {
+  background: var(--orcalex-gradient);
+  padding: 12px 0;
+  color: white;
+}
+
+.footer {
+  background: var(--orcalex-gradient);
+  color: white;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--orcalex-gradient) !important;
+  border: none !important;
+  color: white !important;
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--orcalex-medium) !important;
+  color: var(--orcalex-dark) !important;
+  background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+  background: var(--orcalex-gradient) !important;
+  color: white !important;
+}
+
+/* Card Headers */
+.card-header {
+  background: var(--orcalex-gradient) !important;
+  color: white !important;
+  border: none;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  min-height: calc(100vh - 120px);
+  border-right: 1px solid var(--border-light);
+  width: 250px;
+}
+
+.avatar-circle {
+  background: var(--orcalex-gradient);
+  color: white;
+}
+
+.menu-item:hover, .menu-item.active {
+  background-color: rgba(0, 196, 214, 0.1);
+  color: var(--orcalex-dark);
+}
+
+.menu-icon {
+  color: var(--orcalex-medium);
+}
+
+/* Form Controls */
+.form-control:focus, .form-select:focus {
+  border-color: var(--orcalex-medium);
+  box-shadow: 0 0 0 0.2rem rgba(0, 196, 214, 0.25);
+}
+
+/* Progress Bars */
+.progress-bar {
+  background: var(--orcalex-gradient) !important;
+}
+
+/* Activity Icons */
+.activity-icon, .resource-icon, .stats-icon {
+  background: var(--orcalex-gradient);
+}

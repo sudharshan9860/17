@@ -1,0 +1,108 @@
+/* Add these styles to StudentDash.css */
+
+/* Tag-based Multiselect Styling */
+.chapter-multiselect-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .chapter-multiselect-input {
+    min-height: 40px;
+    border: 1px solid #ccdbe8;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .chapter-multiselect-input:hover {
+    border-color: var(--orcalex-medium);
+  }
+  
+  .chapter-multiselect-input:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 196, 214, 0.15);
+    border-color: var(--orcalex-medium);
+  }
+  
+  .selected-chapters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    flex: 1;
+  }
+  
+  .placeholder-text {
+    color: #6c757d;
+  }
+  
+  .chapter-badge {
+    background-color: #edf2f7 !important;
+    color: var(--orcalex-dark) !important;
+    font-weight: 500;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .remove-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+  
+  .remove-badge:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-toggle-icon {
+    color: #6c757d;
+    padding-left: 8px;
+  }
+  
+  .chapter-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccdbe8;
+    border-radius: 8px;
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chapter-option {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .chapter-option:hover {
+    background-color: #f8fafc;
+  }
+  
+  .chapter-option.selected {
+    background-color: rgba(0, 196, 214, 0.1);
+    color: var(--orcalex-dark);
+    font-weight: 500;
+  }
+  
+  .no-chapters {
+    padding: 10px 15px;
+    color: #6c757d;
+    text-align: center;
+  }

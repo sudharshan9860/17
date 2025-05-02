@@ -1,0 +1,160 @@
+/* Enhanced styles for expanded chapter dropdown */
+
+.expanded-chapter-dropdown-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    z-index: 1050;
+  }
+  
+  /* Dropdown trigger button styling */
+  .custom-select-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 55px; /* Increased height for better visibility */
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #ccdbe8;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.05rem;
+  }
+  
+  .custom-select-control:hover:not(.disabled) {
+    border-color: #00c4d6;
+  }
+  
+  .custom-select-control.open {
+    border-color: #00c4d6;
+    box-shadow: 0 0 0 0.25rem rgba(0, 196, 214, 0.25);
+  }
+  
+  .custom-select-control.disabled {
+    background-color: #f0f3f6;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .selected-value {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .dropdown-arrow {
+    margin-left: 8px;
+    color: #6c757d;
+    transition: transform 0.2s ease;
+  }
+  
+  .custom-select-control.open .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  /* Enhanced Dropdown menu styling */
+  .chapter-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 350px; /* Increased height to show more chapters */
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccdbe8;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 4px;
+    z-index: 1060; /* Higher z-index to ensure it's on top */
+  }
+  
+  .chapter-option {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    white-space: normal; /* Allow text wrapping */
+    word-break: break-word; /* Break long words if needed */
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(204, 219, 232, 0.3);
+  }
+  
+  .chapter-option:last-child {
+    border-bottom: none;
+  }
+  
+  .chapter-option:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .chapter-option.selected {
+    background-color: rgba(0, 196, 214, 0.1);
+    font-weight: 500;
+  }
+  
+  /* Custom scrollbar styling for better user experience */
+  .chapter-dropdown-menu::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .chapter-dropdown-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .chapter-dropdown-menu::-webkit-scrollbar-thumb {
+    background: #ccdbe8;
+    border-radius: 10px;
+  }
+  
+  .chapter-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: #00c4d6;
+  }
+  
+  /* Fix z-index issues */
+  .chapter-dropdown {
+    position: relative;
+    z-index: 1050; /* Higher than other elements on the page */
+  }
+  
+  /* Ensure dropdown appears above other elements */
+  .progress-overview-section {
+    z-index: 1; /* Lower z-index than dropdown */
+  }
+  
+  /* Ensure proper spacing */
+  .section-separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0, 196, 214, 0.2), transparent);
+    margin: 20px 0 30px 0;
+    clear: both;
+  }
+  
+  /* Enhanced styling for label */
+  .form-label {
+    font-weight: 500;
+    color: #1a4488;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  
+  /* Make dropdown menu background more solid */
+  .chapter-dropdown-menu {
+    background-color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Add striped effect for better readability */
+  .chapter-option:nth-child(odd) {
+    background-color: rgba(248, 249, 250, 0.5);
+  }
+  
+  .chapter-option:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .chapter-option:hover {
+    background-color: rgba(0, 196, 214, 0.05) !important;
+  }

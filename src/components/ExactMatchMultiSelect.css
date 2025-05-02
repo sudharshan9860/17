@@ -1,0 +1,132 @@
+/* Add these styles to StudentDash.css */
+
+/* Exact Match Multiselect Styling */
+.exact-match-multiselect {
+    position: relative;
+    width: 100%;
+  }
+  
+  .multiselect-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 38px;
+    padding: 0.375rem 0.75rem;
+    cursor: pointer;
+    background-color: #f8fafc;
+  }
+  
+  .multiselect-input .placeholder {
+    color: #6c757d;
+  }
+  
+  .selected-chapters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-width: calc(100% - 20px);
+  }
+  
+  .chapter-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e9ecef;
+    color: #333;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  
+  .tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 0 2px;
+    font-size: 1rem;
+    line-height: 0.5;
+  }
+  
+  .tag-remove:hover {
+    opacity: 0.8;
+  }
+  
+  .dropdown-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #6c757d;
+  }
+  
+  .multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-top: 0.25rem;
+  }
+  
+  .multiselect-dropdown .dropdown-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .multiselect-dropdown .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .multiselect-dropdown .dropdown-item.selected {
+    background-color: rgba(0, 196, 214, 0.1);
+    color: var(--orcalex-dark);
+    font-weight: 500;
+  }
+  
+  .multiselect-dropdown .no-options {
+    padding: 0.5rem 1rem;
+    color: #6c757d;
+    text-align: center;
+  }
+  
+  /* Learning Progress Overview color update */
+  .progress-overview-section .card-header,
+  .learning-progress-overview {
+    background: var(--orcalex-gradient) !important;
+    color: white;
+  }
+  
+  /* Update scroll-to-top button position */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--orcalex-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+    z-index: 1000;
+  }
+  
+  .scroll-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+  }

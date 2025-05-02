@@ -1,0 +1,117 @@
+/* Enhanced Styles for AI-Powered Study Session */
+
+.study-session-section {
+    border-radius: 15px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    margin-bottom: 40px !important;
+    /* Increase overall size */
+    transform: scale(1.05);
+    transform-origin: top center;
+  }
+  
+  .study-session-section .card-header {
+    background: linear-gradient(to right, #00c4d6, #0088b2) !important;
+    padding: 20px 25px !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    font-size: 1.25rem !important;
+  }
+  
+  .study-session-section .card-body {
+    padding: 35px 30px !important;
+  }
+  
+  .study-session-section .form-label {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 12px !important;
+    color: #001B6C !important;
+  }
+  
+  .study-session-section .form-select-enhanced {
+    height: 55px !important;
+    border-radius: 10px !important;
+    font-size: 1.05rem !important;
+    padding-left: 15px !important;
+  }
+  
+  .study-session-section .chapter-select {
+    font-size: 1.05rem !important;
+  }
+  
+  .generate-questions-btn {
+    padding: 15px 35px !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    border-radius: 12px !important;
+    margin-top: 15px !important;
+    background: linear-gradient(to right, #2d63d8, #1a4488) !important;
+    box-shadow: 0 6px 18px rgba(45, 99, 216, 0.3) !important;
+    border: none !important;
+  }
+  
+  .generate-questions-btn:hover:not(:disabled) {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 22px rgba(45, 99, 216, 0.4) !important;
+  }
+  
+  /* Add more space between form elements */
+  .study-session-section .form-group {
+    margin-bottom: 25px !important;
+  }
+  
+  /* Make icons larger */
+  .study-session-section .form-label svg {
+    font-size: 1.2rem !important;
+    margin-right: 10px !important;
+  }
+  
+  /* Increase spacing in rows */
+  .study-session-section .row {
+    margin-bottom: 20px !important;
+  }
+  
+  /* Increase dropdown menus size */
+  .css-26l3qy-menu {
+    font-size: 1.05rem !important;
+  }
+  
+  /* Make dropdown options larger */
+  .css-26l3qy-menu div {
+    padding: 12px 15px !important;
+  }
+  
+  /* Increase hover effect for interactive elements */
+  .form-select-enhanced:hover,
+  .form-select:hover {
+    border-color: #00c4d6 !important;
+  }
+  
+  .form-select-enhanced:focus,
+  .form-select:focus {
+    box-shadow: 0 0 0 3px rgba(0, 196, 214, 0.25) !important;
+    border-color: #00c4d6 !important;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .study-session-section {
+      transform: scale(1.02);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .study-session-section {
+      transform: none;
+    }
+    
+    .study-session-section .card-body {
+      padding: 25px 20px !important;
+    }
+    
+    .generate-questions-btn {
+      width: 100%;
+      padding: 12px 20px !important;
+    }
+  }

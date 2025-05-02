@@ -1,0 +1,1414 @@
+/* Welcome Header */
+.welcome-header {
+  margin-bottom: 25px;
+}
+
+.welcome-header h2 {
+  color: var(--orcalex-dark);
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+/* Card Styling */
+.card {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+  border: none;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Study Session Card */
+.study-session-section .card-header {
+  background: #00c4d6 !important;
+}
+
+.study-session-section .form-label {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+}
+
+.study-session-section .form-select {
+  border: 1px solid #ccdbe8;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--orcalex-dark);
+  background-color: #f8fafc;
+}
+
+.study-session-section .form-select:focus {
+  border-color: var(--orcalex-medium);
+  box-shadow: 0 0 0 0.2rem rgba(0, 196, 214, 0.25);
+}
+
+.generate-questions-btn {
+  background: #2d63d8 !important; /* Blue to match the design */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.generate-questions-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 74, 124, 0.3);
+}
+
+.generate-questions-btn:disabled {
+  background: #ccdbe8 !important;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Progress Overview Card */
+.progress-overview-section .card-header,
+.learning-progress-overview {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+}
+
+.progress-overview-section .overall-completion h3 {
+  color: var(--orcalex-dark);
+  font-size: 1.1rem;
+}
+
+.progress-overview-section .overall-completion h2 {
+  color: #009db3;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.improvement-badge {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.subject-progress-item {
+  margin-bottom: 15px;
+}
+
+.subject-progress-item .progress {
+  height: 10px;
+  border-radius: 5px;
+  background-color: #edf2f7;
+}
+
+.subject-progress-item .progress-bar {
+  background: var(--orcalex-gradient);
+}
+
+/* Recent Activities Card */
+.recent-activities-section .card-header {
+  background: #0080a0 !important; /* Teal color */
+}
+
+.activity-list {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #edf2f7;
+  transition: background-color 0.2s ease;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item:hover {
+  background-color: #f8fafc;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 16px;
+  color: white;
+}
+
+/* Different colored icons for each activity type */
+.activity-item:nth-child(1) .activity-icon {
+  background-color: #4ade80; /* Green */
+}
+
+.activity-item:nth-child(2) .activity-icon {
+  background-color: #0ea5e9; /* Blue */
+}
+
+.activity-item:nth-child(3) .activity-icon {
+  background-color: #f59e0b; /* Yellow */
+}
+
+.activity-item:nth-child(4) .activity-icon {
+  background-color: #ef4444; /* Red */
+}
+
+.activity-details {
+  flex: 1;
+}
+
+.activity-title {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+  margin-bottom: 3px;
+}
+
+.activity-time {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.activity-score {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0 5px;
+}
+
+.view-all-link {
+  color: #2d63d8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* Recommended Resources Card */
+.recommended-resources-section .card-header {
+  background: #0060a0 !important; /* Blue color */
+}
+
+.resource-list {
+  margin-bottom: 20px;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #edf2f7;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.resource-item:hover {
+  background-color: #f8fafc;
+  border-color: #ccdbe8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.resource-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  color: white;
+  font-size: 16px;
+}
+
+/* Different colored icons for each resource type */
+.resource-item:nth-child(1) .resource-icon {
+  background-color: #ef4444; /* Red */
+}
+
+.resource-item:nth-child(2) .resource-icon {
+  background-color: #0ea5e9; /* Blue */
+}
+
+.resource-item:nth-child(3) .resource-icon {
+  background-color: #22c55e; /* Green */
+}
+
+.resource-details {
+  flex: 1;
+}
+
+.resource-title {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+  margin-bottom: 3px;
+}
+
+.resource-type {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.resource-action {
+  color: #ccdbe8;
+  transition: color 0.2s ease;
+}
+
+.resource-item:hover .resource-action {
+  color: var(--orcalex-medium);
+}
+
+.resource-search {
+  padding-top: 15px;
+  border-top: 1px solid #edf2f7;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccdbe8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orcalex-medium);
+}
+
+/* Utility classes for text colors */
+.text-success {
+  color: #10b981 !important;
+}
+
+.text-warning {
+  color: #f59e0b !important;
+}
+
+.text-danger {
+  color: #ef4444 !important;
+}
+
+/* Replay tutorial button */
+.replay-tutorial-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.replay-tutorial-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* ORCALEX Brand Colors */
+:root {
+  --orcalex-light: #00c4d6;   /* Light teal */
+  --orcalex-medium: #0088b2;  /* Medium blue */
+  --orcalex-dark: #1a4488;    /* Dark blue */
+  --orcalex-gradient: linear-gradient(to right, var(--orcalex-light), var(--orcalex-dark));
+  --orcalex-gradient-vertical: linear-gradient(to bottom, var(--orcalex-light), var(--orcalex-dark));
+  
+  /* Additional Colors */
+  --orcalex-highlight: #4150e4; /* Blue-purple for accents */
+  --orcalex-success: #22c55e;   /* Green for success indicators */
+  --orcalex-warning: #f59e0b;   /* Yellow-orange for warnings */
+  --orcalex-danger: #ef4444;    /* Red for errors/dangers */
+  
+  /* Other UI Colors */
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --sidebar-bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --border-light: rgba(0, 196, 214, 0.2);
+}
+
+/* Student Dash Container */
+.student-dash-container {
+  position: relative;
+  padding-bottom: 70px; /* Space for fixed footer */
+}
+
+/* Welcome Header */
+.welcome-header {
+  margin-bottom: 25px;
+}
+
+.welcome-title {
+  color: var(--orcalex-dark);
+  font-weight: 600;
+  font-size: 1.8rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.welcome-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--orcalex-gradient);
+  border-radius: 2px;
+}
+
+/* Animation for welcome title */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  margin-bottom: 20px;
+  overflow: overlay;
+  transition: all 0.3s;
+  background-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Form controls enhancement */
+.form-select-enhanced {
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #ccdbe8;
+  transition: all 0.3s;
+  background-color: #f8fafc;
+}
+
+.form-select-enhanced:focus {
+  box-shadow: 0 0 0 3px rgba(0, 196, 214, 0.15);
+  border-color: var(--orcalex-medium);
+}
+
+.form-select-enhanced:disabled {
+  background-color: #f0f3f6;
+  cursor: not-allowed;
+}
+
+/* Study Session Card */
+.study-session-section .card-header {
+  background: linear-gradient(to right, #00c4d6, #0088b2) !important;
+}
+
+.study-session-section .form-label {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+  margin-bottom: 8px;
+}
+
+.generate-questions-btn {
+  background: #2d63d8 !important; /* Blue to match the design */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: all 0.3s;
+  color: white;
+  box-shadow: 0 4px 15px rgba(45, 99, 216, 0.2);
+}
+
+.generate-questions-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 99, 216, 0.3);
+}
+
+.generate-questions-btn:disabled {
+  background: #ccdbe8 !important;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Progress Overview Card */
+.progress-overview-section .card-header {
+  background: var(--orcalex-gradient) !important; /* Use the ORCALEX brand gradient */
+}
+
+.progress-overview-section .overall-completion h3 {
+  color: var(--orcalex-dark);
+  font-size: 1.1rem;
+}
+
+.progress-overview-section .overall-completion h2 {
+  color: #009db3;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.completion-percentage {
+  background: var(--orcalex-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.improvement-badge {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(40, 167, 69, 0.1);
+}
+
+.subject-progress-item {
+  margin-bottom: 15px;
+  transition: transform 0.2s;
+  padding: 5px 0;
+}
+
+.subject-progress-item:hover {
+  transform: translateX(5px);
+}
+
+.subject-progress-item .progress {
+  height: 10px;
+  border-radius: 5px;
+  background-color: #edf2f7;
+  overflow: hidden;
+}
+
+.subject-progress-item .progress-bar {
+  background: var(--orcalex-gradient);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated progress bar with shine effect */
+.animated-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progressShine 2s infinite linear;
+}
+
+@keyframes progressShine {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* Stats items */
+.stats-summary {
+  margin-top: 30px;
+}
+
+.stats-item {
+  padding: 15px 10px;
+  transition: all 0.3s;
+  border-radius: 8px;
+}
+
+.stats-item:hover {
+  background-color: rgba(0, 196, 214, 0.05);
+  transform: translateY(-5px);
+}
+
+.stats-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-icon.completed {
+  background: linear-gradient(to right, #22c55e, #16a34a);
+}
+
+.stats-icon.in-progress {
+  background: linear-gradient(to right, #f59e0b, #d97706);
+}
+
+.stats-icon.badges {
+  background: linear-gradient(to right, #7c3aed, #6d28d9);
+}
+
+.stats-icon.rating {
+  background: linear-gradient(to right, #ec4899, #db2777);
+}
+
+.stats-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.stats-value {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--orcalex-dark);
+}
+
+/* Recent Activities Card */
+.recent-activities-section .card-header {
+  background: linear-gradient(to right, #0088b2, #005f7f) !important; /* Teal color */
+}
+
+.activity-list {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+
+.activity-item:last-child {
+  margin-bottom: 0;
+}
+
+.activity-item:hover {
+  background-color: #f8fafc;
+  border-color: #edf2f7;
+  transform: translateX(5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 16px;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Different colored icons for each activity type */
+.activity-item:nth-child(1) .activity-icon {
+  background: linear-gradient(to right, #4ade80, #22c55e); /* Green */
+}
+
+.activity-item:nth-child(2) .activity-icon {
+  background: linear-gradient(to right, #38bdf8, #0284c7); /* Blue */
+}
+
+.activity-item:nth-child(3) .activity-icon {
+  background: linear-gradient(to right, #fbbf24, #d97706); /* Yellow-Orange */
+}
+
+.activity-item:nth-child(4) .activity-icon {
+  background: linear-gradient(to right, #f87171, #dc2626); /* Red */
+}
+
+.activity-details {
+  flex: 1;
+}
+
+.activity-title {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+  margin-bottom: 3px;
+}
+
+.activity-time {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.activity-score {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0 5px;
+}
+
+.view-all-link {
+  color: #2d63d8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.view-all-link:hover {
+  text-decoration: none;
+  background-color: rgba(45, 99, 216, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Recommended Resources Card */
+.recommended-resources-section .card-header {
+  background: linear-gradient(to right, #1e40af, #1e3a8a) !important; /* Blue color */
+}
+
+.resource-list {
+  margin-bottom: 20px;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #edf2f7;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.resource-item:hover {
+  background-color: #f8fafc;
+  border-color: #ccdbe8;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.resource-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  color: white;
+  font-size: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Different colored icons for each resource type */
+.resource-item:nth-child(1) .resource-icon {
+  background: linear-gradient(to right, #ef4444, #b91c1c); /* Red */
+}
+
+.resource-item:nth-child(2) .resource-icon {
+  background: linear-gradient(to right, #0ea5e9, #0369a1); /* Blue */
+}
+
+.resource-item:nth-child(3) .resource-icon {
+  background: linear-gradient(to right, #22c55e, #15803d); /* Green */
+}
+
+.resource-details {
+  flex: 1;
+}
+
+.resource-title {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+  margin-bottom: 3px;
+}
+
+.resource-type {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.resource-action {
+  color: #ccdbe8;
+  transition: color 0.2s ease;
+}
+
+.resource-item:hover .resource-action {
+  color: var(--orcalex-medium);
+}
+
+.resource-search {
+  padding-top: 15px;
+  border-top: 1px solid #edf2f7;
+}
+
+.resource-library-btn {
+  border: 2px solid var(--orcalex-medium) !important;
+  color: var(--orcalex-dark) !important;
+  background: transparent !important;
+  padding: 8px 20px;
+  transition: all 0.3s;
+}
+
+.resource-library-btn:hover {
+  background: var(--orcalex-gradient) !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 136, 178, 0.2);
+}
+
+/* Animation for cards */
+.animate-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s ease forwards;
+  animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--orcalex-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Replay tutorial button */
+.replay-tutorial-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  transition: all 0.3s;
+}
+
+.replay-tutorial-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Footer adjustments for fixed footer */
+.footer.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccdbe8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orcalex-medium);
+}
+
+/* Utility classes for text colors */
+.text-success {
+  color: var(--orcalex-success) !important;
+}
+
+.text-warning {
+  color: var(--orcalex-warning) !important;
+}
+
+.text-danger {
+  color: var(--orcalex-danger) !important;
+}
+
+.chapter-multi-select {
+  position: relative;
+}
+
+.chapter-multi-select .form-select-enhanced {
+  height: 120px !important;
+  overflow-y: auto;
+}
+
+.chapter-multi-select small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.75rem;
+}
+
+/* Multi-select chapter styling */
+.chapter-multi-select {
+  position: relative;
+}
+
+.chapter-multi-select .form-select-enhanced {
+  height: 120px !important;
+  overflow-y: auto;
+}
+
+.chapter-multi-select small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+/* Main navigation background update */
+.main-navigation {
+  background-color: var(--orcalex-dark); /* Use ORCALEX dark blue */
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 69px; /* Height of top header */
+  z-index: 999;
+}
+
+/* Add these styles to StudentDash.css */
+
+/* Bootstrap-style Multiselect */
+.bootstrap-style-multiselect {
+  position: relative;
+  width: 100%;
+}
+
+.multiselect-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  background-color: #f8fafc;
+}
+
+.multiselect-input .placeholder {
+  color: #6c757d;
+}
+
+.multiselect-input .selected-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+}
+
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e9ecef !important;
+  color: #333 !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+}
+
+.badge-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.badge-remove:hover {
+  opacity: 0.8;
+}
+
+.dropdown-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.multiselect-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  margin-top: 0.25rem;
+}
+
+.multiselect-dropdown .dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.multiselect-dropdown .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.multiselect-dropdown .dropdown-item.selected {
+  background-color: rgba(0, 196, 214, 0.1);
+  color: var(--orcalex-dark);
+  font-weight: 500;
+}
+
+.multiselect-dropdown .no-options {
+  padding: 0.5rem 1rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+/* Learning Progress Overview color update */
+.progress-overview-section .card-header,
+.learning-progress-overview {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+}
+
+/* Update scroll-to-top button position */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--orcalex-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add these styles to your StudentDash.css file */
+
+/* Fix for chapter dropdown positioning and z-index */
+.chapter-dropdown {
+  position: relative;
+  z-index: 1050 !important; /* Ensures dropdown appears above other elements */
+}
+
+/* Make the chapter dropdown appear above other elements */
+.chapter-select .css-26l3qy-menu,
+.react-select__menu {
+  z-index: 1060 !important; /* Higher than most elements but lower than modals */
+}
+
+/* Style for the dropdown container to make it more visible */
+.react-select__menu-list,
+.multiselect-dropdown {
+  background-color: white !important;
+  border: 1px solid #ccdbe8 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Set proper positioning for the dropdown to appear above other content */
+.form-select-enhanced,
+.react-select__control {
+  position: relative;
+}
+
+/* Ensure dropdown opens in correct position */
+.chapter-multi-select .dropdown-menu,
+.react-select__menu {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  width: 100% !important;
+}
+
+/* Fix for chapter list items to make them more readable */
+.chapter-option,
+.dropdown-item,
+.react-select__option {
+  padding: 8px 12px !important;
+  white-space: normal !important; /* Allow text to wrap */
+  word-break: break-word !important;
+}
+
+.chapter-option {
+  padding: 12px 15px !important;
+  white-space: normal !important; /* Allow text wrapping */
+  word-break: break-word !important; /* Break long words if needed */
+}
+
+/* Make sure the dropdown doesn't shift layout when opening */
+.expanded-chapter-dropdown-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  z-index: 1050;
+}
+
+/* Add improved styling for form elements */
+.form-control:focus, 
+.form-select:focus,
+.custom-select-control:focus,
+.custom-select-control.open {
+  box-shadow: 0 0 0 0.25rem rgba(0, 196, 214, 0.25) !important;
+  border-color: #00c4d6 !important;
+}
+
+/* Ensure all form elements have consistent styling */
+.form-select-enhanced,
+.custom-select-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 55px; /* Increased height for better visibility */
+  padding: 10px 15px;
+  background-color: #fff;
+  border: 1px solid #ccdbe8;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.05rem;
+}
+
+/* Add proper hover effects */
+.form-select-enhanced:hover,
+.custom-select-control:hover {
+  border-color: #00c4d6 !important;
+}
+
+/* Fix any modal z-index issues */
+.modal {
+  z-index: 1070 !important; /* Higher than dropdowns */
+}
+
+.modal-backdrop {
+  z-index: 1065 !important; /* Between dropdowns and modal */
+}
+
+/* Ensure error messages appear above other content */
+.alert {
+  z-index: 1055 !important;
+  position: relative;
+}
+
+/* Fix for z-index overlap with Learning Progress Overview */
+.progress-overview-section {
+  z-index: 1 !important; /* Lower z-index than dropdown */
+  margin-top: 20px !important; /* Add more space between sections */
+}
+
+/* Make select/dropdown container have higher z-index */
+.chapter-multi-select,
+.form-group,
+.react-select__container,
+.chapter-multiselect-container,
+.exact-match-multiselect,
+.bootstrap-style-multiselect {
+  position: relative !important;
+  z-index: 1040 !important; /* Higher than page elements but lower than modals */
+}
+
+/* Fix for modal select dropdown appearing behind modal */
+.modal-content .chapter-select .css-26l3qy-menu {
+  z-index: 1060 !important;
+}
+
+/* Add these CSS fixes to your StudentDash.css file */
+
+/* Fix for chapter dropdown positioning and z-index */
+.chapter-dropdown {
+  position: relative;
+}
+
+/* Ensure proper dropdown menu visibility */
+.chapter-select .css-26l3qy-menu,
+.react-select__menu {
+  z-index: 1050 !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  background-color: white !important;
+  border: 1px solid #ccdbe8 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Make sure dropdown container has proper z-index */
+.chapter-select-container {
+  position: relative;
+  z-index: 1040;
+}
+
+/* Style for the dropdown items for better readability */
+.react-select__option {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/* Fix for z-index overlap with Learning Progress Overview */
+.progress-overview-section {
+  z-index: 1 !important; /* Lower z-index than dropdown */
+  margin-top: 30px !important; /* Add more space between sections */
+}
+
+/* Section separator for better spacing */
+.section-separator {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 196, 214, 0.2), transparent);
+  margin: 20px 0 30px 0;
+  clear: both;
+}
+
+/* Ensure proper spacing between form sections */
+.student-dash-container .card {
+  margin-bottom: 30px;
+}
+
+.css-26l3qy-menu,
+.react-select__menu-list {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+/* Custom scrollbar for dropdowns */
+.react-select__menu-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb {
+  background: #ccdbe8;
+  border-radius: 10px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb:hover {
+  background: #00c4d6;
+}
+
+/* Add these styles to your CSS file */
+
+.chapter-dropdown {
+  position: relative;
+  z-index: 1040;
+}
+
+/* Make the dropdown show above other elements */
+.form-select-enhanced.chapters-dropdown,
+.chapter-select .css-26l3qy-menu {
+  z-index: 1050 !important;
+}
+
+/* Set proper height for dropdowns */
+.form-select-enhanced.chapters-dropdown {
+  height: auto !important;
+  max-height: 300px !important; 
+  overflow-y: auto !important;
+}
+
+.form-select-enhanced.chapters-dropdown option {
+  padding: 8px 12px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Override any conflicting styles */
+.form-select-enhanced.chapters-dropdown,
+.react-select__menu {
+  position: absolute !important;
+  width: 100% !important;
+}
+
+/* Add proper margin to create space between sections */
+.progress-overview-section {
+  margin-top: 30px !important;
+}
+
+/* Custom scrollbar */
+.form-select-enhanced.chapters-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-select-enhanced.chapters-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.form-select-enhanced.chapters-dropdown::-webkit-scrollbar-thumb {
+  background: #ccdbe8;
+  border-radius: 10px;
+}
+
+.form-select-enhanced.chapters-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #00c4d6;
+}
+
+/* Enhanced Styles for AI-Powered Study Session */
+.study-session-section {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  margin-bottom: 40px !important;
+}
+
+.study-session-section .card-header {
+  padding: 20px 25px !important;
+  font-size: 1.25rem !important;
+}
+
+.study-session-section .card-body {
+  padding: 30px !important;
+}
+
+.study-session-section .form-label {
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 12px !important;
+}
+
+.study-session-section .form-select-enhanced {
+  height: 55px !important;
+  border-radius: 10px !important;
+  font-size: 1.05rem !important;
+  padding-left: 15px !important;
+}
+
+.study-session-section .chapter-select {
+  font-size: 1.05rem !important;
+}
+
+.generate-questions-btn {
+  padding: 15px 35px !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  margin-top: 15px !important;
+  box-shadow: 0 6px 18px rgba(45, 99, 216, 0.3) !important;
+}
+
+/* Make sure form elements have enough spacing */
+.study-session-section .row {
+  margin-bottom: 15px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .study-session-section {
+    transform: none; /* Remove scaling on mobile */
+  }
+  
+  .study-session-section .card-body {
+    padding: 25px 20px !important;
+  }
+}
