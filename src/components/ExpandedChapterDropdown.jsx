@@ -1,9 +1,11 @@
+// ExpandedChapterDropdown.jsx - Improved version
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListAlt, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-const ExpandedChapterDropdown = ({ 
+const ImprovedChapterDropdown = ({ 
   chapters = [], 
   selectedChapters = [], 
   setSelectedChapters,
@@ -83,9 +85,18 @@ const ExpandedChapterDropdown = ({
           </div>
         </div>
         
-        {/* Improved Dropdown Menu - Always shows the full height of chapters */}
+        {/* Fixed positioning for dropdown menu */}
         {isDropdownOpen && (
-          <div className="chapter-dropdown-menu" style={{ maxHeight: '350px' }}>
+          <div 
+            className="chapter-dropdown-menu" 
+            style={{ 
+              position: 'absolute',
+              maxHeight: '300px',
+              width: '100%',
+              zIndex: 1060,
+              overflowY: 'auto'
+            }}
+          >
             {chapters.length === 0 ? (
               <div className="chapter-option">No chapters available</div>
             ) : (
@@ -105,11 +116,11 @@ const ExpandedChapterDropdown = ({
         <small className="form-text text-muted mt-1">
           {questionType === "external" 
             ? "Select a chapter (scroll to see all options)" 
-            : "Select one or more chapters (scroll to see all options)"}
+            : "Select one or more chapters"}
         </small>
       </Form.Group>
     </div>
   );
 };
 
-export default ExpandedChapterDropdown;
+export default ImprovedChapterDropdown;

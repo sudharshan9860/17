@@ -13,19 +13,81 @@ const ResultPage = () => {
   const [isCalculatingScore, setIsCalculatingScore] = useState(false);
   const [autoCalculatedScore, setAutoCalculatedScore] = useState(null);
   
-  const { state } = location;
   const { 
-    message, 
-    ai_data, 
-    actionType, 
-    questionList, 
-    class_id, 
-    subject_id, 
-    topic_ids, 
-    subtopic,
-    questionImage,
-    questionNumber
-  } = state || {};
+    state: { 
+      message, 
+      ai_data, 
+      actionType, 
+      questionList, 
+      class_id, 
+      subject_id, 
+      topic_ids, 
+      subtopic,
+      questionImage,
+      questionNumber,
+      study_time
+    } = {}
+  } = location;
+
+   // Save session history when component mounts
+   useEffect(() => {
+    if (actionType && study_time) {
+      saveSessionHistory();
+    }
+  }, [actionType, study_time]);
+
+   // Function to save session history to localStorage
+   const saveSessionHistory = () => {
+    try {
+      // Get existing history or initialize as empty array
+      const existingHistory = JSON.parse(localStorage.getItem('sessionHistory') || '[]');
+      
+      // Get subject and chapter names
+      const subjectName = getSubjectName(subject_id);
+      const chapterName = getChapterName(topic_ids);
+      
+      // Create new session entry
+      const newSession = {
+        date: new Date().toISOString(),
+        subject: subjectName,
+        chapter: chapterName,
+        questionType: actionType,
+        studyTime: study_time || 0,
+        isCorrect: ai_data?.obtained_marks > 0 || ai_data?.score > 0,
+        questionNumber: questionNumber
+      };
+      
+      // Add to history and save
+      existingHistory.unshift(newSession);
+      localStorage.setItem('sessionHistory', JSON.stringify(existingHistory));
+      
+      console.log('Session history saved:', newSession);
+    } catch (error) {
+      console.error('Error saving session history:', error);
+    }
+  };
+
+
+   // Helper function to get subject name
+   const getSubjectName = (subjectId) => {
+    // This would ideally fetch from a context or state
+    // For now using hardcoded values as example
+    const subjects = {
+      'Mathematics': 'Mathematics',
+      'Science': 'Science',
+      'English': 'English'
+    };
+    return subjects[subjectId] || 'Unknown Subject';
+  };
+  
+  // Helper function to get chapter name
+  const getChapterName = (topicIds) => {
+    // This would ideally get the name from your chapters data
+    // For now using a placeholder
+    return Array.isArray(topicIds) && topicIds.length > 0 
+      ? `Chapter ${topicIds[0]}`
+      : 'Unknown Chapter';
+  };
   
   const { 
     question, 

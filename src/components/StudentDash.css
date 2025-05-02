@@ -1412,3 +1412,238 @@
     padding: 25px 20px !important;
   }
 }
+
+/* Add this to your StudentDash.css file */
+
+/* Improved layout for form items in a row */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.form-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+/* Styling specifically for the set selection dropdown */
+.set-selection-container {
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Ensure consistent styling with other dropdowns */
+.set-select-control {
+  height: 55px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  padding-left: 15px;
+  background-color: #fff;
+  border: 1px solid #ccdbe8;
+}
+
+/* Match the layout spacing of other elements */
+.set-selection-group {
+  margin-bottom: 15px;
+}
+
+/* Add these to your CSS files */
+
+/* Fix for chapter dropdown positioning */
+.expanded-chapter-dropdown-container {
+  position: relative;
+  z-index: 1050; /* Ensure it appears above other elements */
+}
+
+.chapter-dropdown-menu {
+  /* Fixed positioning with high z-index */
+  position: absolute !important;
+  z-index: 1060 !important; 
+  width: 100%;
+  background-color: white !important;
+  border: 1px solid #ccdbe8 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 10px;
+}
+
+/* Adjust spacing for the set selection dropdown */
+.set-selection-container {
+  margin-top: 20px;
+}
+
+/* Session history styles */
+.session-history-card {
+  margin-top: 25px;
+}
+
+.dropdown-toggle-icon {
+  transition: transform 0.2s ease;
+}
+
+.session-history-card .card-header:hover {
+  background: linear-gradient(to right, #00c4d6, #0060a0) !important;
+}
+
+/* Add these to your StudentDash.css file */
+
+/* Form layout styling */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.form-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+/* Styling specifically for the set selection dropdown */
+.set-selection-container {
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Ensure consistent styling with other dropdowns */
+.set-select-control {
+  height: 55px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  padding-left: 15px;
+  background-color: #fff;
+  border: 1px solid #ccdbe8;
+}
+
+/* Match the layout spacing of other elements */
+.set-selection-group {
+  margin-bottom: 15px;
+}
+
+/* Fix for chapter dropdown positioning */
+.expanded-chapter-dropdown-container {
+  position: relative;
+  z-index: 1050; /* Ensure it appears above other elements */
+}
+
+.chapter-dropdown-menu {
+  /* Fixed positioning with high z-index */
+  position: absolute !important;
+  z-index: 1060 !important; 
+  width: 100%;
+  background-color: white !important;
+  border: 1px solid #ccdbe8 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 10px;
+}
+
+/* Adjust spacing for the set selection dropdown */
+.set-selection-container {
+  margin-top: 20px;
+}
+
+/* Session history styles */
+.session-history-card {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s;
+}
+
+.session-history-card .card-header {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-toggle-icon {
+  transition: transform 0.2s ease;
+}
+
+.session-history-card .card-header:hover {
+  background: linear-gradient(to right, #00c4d6, #0060a0) !important;
+}
+
+/* Session item styling */
+.session-title {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+}
+
+.session-details {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.view-all-link {
+  color: #2d63d8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.view-all-link:hover {
+  text-decoration: none;
+  background-color: rgba(45, 99, 216, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Session history styles */
+.session-history-card {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s;
+}
+
+.session-history-card .card-header {
+  background: var(--orcalex-gradient) !important;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-toggle-icon {
+  transition: transform 0.2s ease;
+}
+
+.session-history-card .card-header:hover {
+  background: linear-gradient(to right, #00c4d6, #0060a0) !important;
+}
+
+/* Session item styling */
+.session-title {
+  font-weight: 500;
+  color: var(--orcalex-dark);
+}
+
+.session-details {
+  color: #6c757d;
+  font-size: 0.85rem;
+}

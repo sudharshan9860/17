@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Form, Button, Row, Col, Card, ProgressBar, Badge } from "react-bootstrap";
+import { Form, Button, Row, Col, Card, ProgressBar, Badge, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
-import Select from 'react-select';
-import ExpandedChapterDropdown from './ExpandedChapterDropdown';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSchool,
@@ -26,7 +24,11 @@ import {
   faStickyNote,
   faBook,
   faLandmark,
-  faArrowUp
+  faArrowUp,
+  faChevronDown,
+  faChevronUp,
+  faTimes,
+  faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../components/AuthContext";
 import { ProgressContext } from "../contexts/ProgressContext";
@@ -34,7 +36,239 @@ import { useTutorial } from "../contexts/TutorialContext";
 import Tutorial from "./Tutorial";
 import QuestionListModal from "./QuestionListModal";
 import "./StudentDash.css";
-import "./ExpandedChapterDropdown.css"; // Import the CSS for the new dropdown
+import "./ExpandedChapterDropdown.css";
+import SessionHistoryComponent  from './SessionHistory';
+
+// ImprovedChapterDropdown component - embedded directly in this file
+const ImprovedChapterDropdown = ({ 
+  chapters = [], 
+  selectedChapters = [], 
+  setSelectedChapters,
+  disabled = false,
+  questionType = ""
+}) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = React.useRef(null);
+
+  // Handle clicking outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => {
+    if (!disabled) {
+      setIsDropdownOpen(!isDropdownOpen);
+    }
+  };
+
+  // Handle chapter selection
+  const handleChapterSelect = (chapterCode) => {
+    if (questionType === "external") {
+      // Single selection for external question type
+      setSelectedChapters([chapterCode]);
+      setIsDropdownOpen(false);
+    } else {
+      // Toggle selection for multi-select
+      if (selectedChapters.includes(chapterCode)) {
+        setSelectedChapters(selectedChapters.filter(code => code !== chapterCode));
+      } else {
+        setSelectedChapters([...selectedChapters, chapterCode]);
+      }
+    }
+  };
+
+  // Get display text for selected chapter(s)
+  const getDisplayText = () => {
+    if (selectedChapters.length === 0) {
+      return "Select Chapters";
+    } else if (questionType === "external" || selectedChapters.length === 1) {
+      const chapter = chapters.find(c => c.topic_code === selectedChapters[0]);
+      return chapter ? chapter.name : "Selected Chapter";
+    } else {
+      return `${selectedChapters.length} chapters selected`;
+    }
+  };
+
+  return (
+    <div className="expanded-chapter-dropdown-container" ref={dropdownRef}>
+      <Form.Group controlId="formChapters">
+        <Form.Label>
+          <FontAwesomeIcon icon={faListAlt} className="me-2" />
+          Chapters
+        </Form.Label>
+        
+        {/* Custom dropdown trigger */}
+        <div 
+          className={`custom-select-control ${isDropdownOpen ? 'open' : ''} ${disabled ? 'disabled' : ''}`}
+          onClick={toggleDropdown}
+        >
+          <div className="selected-value">
+            {getDisplayText()}
+          </div>
+          <div className="dropdown-arrow">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+        
+        {/* Fixed positioning for dropdown menu */}
+        {isDropdownOpen && (
+          <div 
+            className="chapter-dropdown-menu" 
+            style={{ 
+              position: 'absolute',
+              maxHeight: '300px',
+              width: '100%',
+              zIndex: 1060,
+              overflowY: 'auto'
+            }}
+          >
+            {chapters.length === 0 ? (
+              <div className="chapter-option">No chapters available</div>
+            ) : (
+              chapters.map(chapter => (
+                <div 
+                  key={chapter.topic_code}
+                  className={`chapter-option ${selectedChapters.includes(chapter.topic_code) ? 'selected' : ''}`}
+                  onClick={() => handleChapterSelect(chapter.topic_code)}
+                >
+                  {chapter.name}
+                </div>
+              ))
+            )}
+          </div>
+        )}
+        
+        <small className="form-text text-muted mt-1">
+          {questionType === "external" 
+            ? "Select a chapter (scroll to see all options)" 
+            : "Select one or more chapters"}
+        </small>
+      </Form.Group>
+    </div>
+  );
+};
+
+// SessionHistory component - embedded directly
+const SessionHistory = () => {
+  const [expanded, setExpanded] = useState(false);
+  const { getProgressSummary } = useContext(ProgressContext);
+  const [sessions, setSessions] = useState([]);
+
+  useEffect(() => {
+    // Load session history from localStorage
+    const sessionData = localStorage.getItem('sessionHistory') || '[]';
+    const parsedSessions = JSON.parse(sessionData);
+    
+    // Sort sessions by date (most recent first)
+    const sortedSessions = parsedSessions.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+    
+    setSessions(sortedSessions);
+  }, []);
+
+  // Format date for display
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
+  };
+
+  // Format time duration
+  const formatDuration = (minutes) => {
+    if (minutes < 60) {
+      return `${minutes} min`;
+    } else {
+      const hours = Math.floor(minutes / 60);
+      const remainingMinutes = minutes % 60;
+      return `${hours}h ${remainingMinutes}m`;
+    }
+  };
+
+  return (
+    <Card className="session-history-card mb-4">
+      <Card.Header 
+        className="d-flex justify-content-between align-items-center"
+        style={{ cursor: 'pointer' }}
+        onClick={() => setExpanded(!expanded)}
+      >
+        <div>
+          <FontAwesomeIcon icon={faHistory} className="me-2" />
+          Session History
+        </div>
+        <div>
+          <FontAwesomeIcon 
+            icon={expanded ? faChevronUp : faChevronDown} 
+            className="dropdown-toggle-icon"
+          />
+        </div>
+      </Card.Header>
+      
+      {expanded && (
+        <Card.Body className="p-0">
+          {sessions.length > 0 ? (
+            <ListGroup variant="flush">
+              {sessions.slice(0, 10).map((session, index) => (
+                <ListGroup.Item key={index} className="py-3 px-3">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div>
+                      <div className="session-title fw-bold">
+                        {session.subject} - Chapter {session.chapter}
+                      </div>
+                      <div className="session-details small text-muted">
+                        {formatDate(session.date)}
+                      </div>
+                    </div>
+                    <div className="d-flex align-items-center">
+                      <Badge bg="info" className="me-2">
+                        <FontAwesomeIcon icon={faClock} className="me-1" />
+                        {formatDuration(session.studyTime)}
+                      </Badge>
+                      {session.isCorrect ? (
+                        <Badge bg="success">
+                          <FontAwesomeIcon icon={faCheck} className="me-1" />
+                          Correct
+                        </Badge>
+                      ) : (
+                        <Badge bg="warning">
+                          <FontAwesomeIcon icon={faTimes} className="me-1" />
+                          Incorrect
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          ) : (
+            <div className="p-3 text-center">
+              <p className="mb-0">No session history available</p>
+            </div>
+          )}
+          
+          {sessions.length > 10 && (
+            <div className="text-center py-2">
+              <a href="/progress-dashboard" className="view-all-link">View all sessions</a>
+            </div>
+          )}
+        </Card.Body>
+      )}
+    </Card>
+  );
+};
 
 function StudentDash() {
   const navigate = useNavigate();
@@ -48,7 +282,7 @@ function StudentDash() {
   const [chapters, setChapters] = useState([]);
   const [subTopics, setSubTopics] = useState([]);
 
-  // State for selections
+  // State for selections - set defaults
   const [selectedClass, setSelectedClass] = useState("10");
   const [selectedSubject, setSelectedSubject] = useState("Mathematics");
   const [selectedChapters, setSelectedChapters] = useState([]);
@@ -189,7 +423,7 @@ function StudentDash() {
     fetchData();
   }, []);
 
-  // Load subjects when class is selected
+  // Load subjects for default class
   useEffect(() => {
     async function fetchSubjects() {
       if (selectedClass) {
@@ -198,11 +432,6 @@ function StudentDash() {
             class_id: selectedClass,
           });
           setSubjects(subjectResponse.data.data);
-          // Reset dependent fields when class changes
-          setSelectedSubject("");
-          setSelectedChapters([]);
-          setQuestionType("");
-          setQuestionLevel("");
         } catch (error) {
           console.error("Error fetching subjects:", error);
           setSubjects([]);
@@ -212,7 +441,7 @@ function StudentDash() {
     fetchSubjects();
   }, [selectedClass]);
 
-  // Load chapters when subject is selected
+  // Load chapters for default class and subject
   useEffect(() => {
     async function fetchChapters() {
       if (selectedSubject && selectedClass) {
@@ -222,17 +451,17 @@ function StudentDash() {
             class_id: selectedClass,
           });
           setChapters(chapterResponse.data.data);
-          // Reset dependent fields when subject changes
-          setSelectedChapters([]);
-          setQuestionType("");
-          setQuestionLevel("");
         } catch (error) {
           console.error("Error fetching chapters:", error);
           setChapters([]);
         }
       }
     }
-    fetchChapters();
+    
+    // Initial load
+    if (selectedClass && selectedSubject) {
+      fetchChapters();
+    }
   }, [selectedSubject, selectedClass]);
 
   // Add this to the useEffect section in StudentDash.jsx
@@ -372,20 +601,20 @@ function StudentDash() {
 
     // Navigate to SolveQuestion with the first selected question
     const firstQuestion = selectedQuestionsData[0];
-  navigate("/solvequestion", {
-    state: {
-      question: firstQuestion.question,
-      questionNumber: firstQuestion.index + 1,
-      questionList, // The full question list is still needed for reference
-      class_id: selectedClass,
-      subject_id: selectedSubject,
-      topic_ids: selectedChapters,
-      subtopic: questionType === "external" ? questionLevel : "",
-      image: firstQuestion.image,
-      selectedQuestions: selectedQuestionsData, // The selected questions subset
-    },
-  });
-};
+    navigate("/solvequestion", {
+      state: {
+        question: firstQuestion.question,
+        questionNumber: firstQuestion.index + 1,
+        questionList, // The full question list is still needed for reference
+        class_id: selectedClass,
+        subject_id: selectedSubject,
+        topic_ids: selectedChapters,
+        subtopic: questionType === "external" ? questionLevel : "",
+        image: firstQuestion.image,
+        selectedQuestions: selectedQuestionsData, // The selected questions subset
+      },
+    });
+  };
 
   // Navigate to view all activities
   const handleViewAllActivities = () => {
@@ -432,150 +661,155 @@ function StudentDash() {
         <Col lg={12} className="mb-4">
           {/* AI-Powered Study Session Section */}
           <Card className={`study-session-section mb-4 ${animateCards ? 'animate-card' : ''}`} style={{'--animation-order': 1}}>
-            <Card.Header className="d-flex justify-content-between align-items-center">
-              <div>
-                <FontAwesomeIcon icon={faGraduationCap} className="me-2" />
-                AI-Powered Study Session
-              </div>
-              <Button 
-                variant="outline-light" 
-                size="sm"
-                className="replay-tutorial-btn"
-                onClick={() => restartTutorialForPage("studentDash")}
-              >
-                <FontAwesomeIcon icon={faQuestionCircle} className="me-1" />
-                Replay Tutorial
-              </Button>
-            </Card.Header>
-            <Card.Body>
-              <Form onSubmit={handleSubmit}>
-                <Row>
-                  <Col md={6} className="mb-3">
-                    <Form.Group controlId="formClass">
-                      <Form.Label>
-                        <FontAwesomeIcon icon={faSchool} className="me-2" />
-                        Class
-                      </Form.Label>
-                      <Form.Select
-                        value={selectedClass}
-                        onChange={(e) => setSelectedClass(e.target.value)}
-                        className="form-select-enhanced"
-                      >
-                        <option value="">Select Class</option>
-                        {classes.map((cls) => (
-                          <option key={cls.class_code} value={cls.class_code}>
-                            {cls.class_name}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col md={6} className="mb-3">
-                    <Form.Group controlId="formSubject">
-                      <Form.Label>
-                        <FontAwesomeIcon icon={faBookOpen} className="me-2" />
-                        Subject
-                      </Form.Label>
-                      <Form.Select
-                        value={selectedSubject}
-                        onChange={(e) => setSelectedSubject(e.target.value)}
-                        disabled={!selectedClass}
-                        className="form-select-enhanced"
-                      >
-                        <option value="">Select Subject</option>
-                        {subjects.map((subject) => (
-                          <option
-                            key={subject.subject_code}
-                            value={subject.subject_code}
-                          >
-                            {subject.subject_name}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                </Row>
+  <Card.Header className="d-flex justify-content-between align-items-center">
+    <div>
+      <FontAwesomeIcon icon={faGraduationCap} className="me-2" />
+      AI-Powered Study Session
+    </div>
+    <Button 
+      variant="outline-light" 
+      size="sm"
+      className="replay-tutorial-btn"
+      onClick={() => restartTutorialForPage("studentDash")}
+    >
+      <FontAwesomeIcon icon={faQuestionCircle} className="me-1" />
+      Replay Tutorial
+    </Button>
+  </Card.Header>
+  <Card.Body>
+    <Form onSubmit={handleSubmit}>
+      <div className="form-row">
+        {/* Class Selection */}
+        <div className="form-col">
+          <Form.Group controlId="formClass">
+            <Form.Label>
+              <FontAwesomeIcon icon={faSchool} className="me-2" />
+              Class
+            </Form.Label>
+            <Form.Select
+              value={selectedClass}
+              onChange={(e) => setSelectedClass(e.target.value)}
+              className="form-select-enhanced"
+            >
+              <option value="">Select Class</option>
+              {classes.map((cls) => (
+                <option key={cls.class_code} value={cls.class_code}>
+                  {cls.class_name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </div>
+        
+        {/* Subject Selection */}
+        <div className="form-col">
+          <Form.Group controlId="formSubject">
+            <Form.Label>
+              <FontAwesomeIcon icon={faBookOpen} className="me-2" />
+              Subject
+            </Form.Label>
+            <Form.Select
+              value={selectedSubject}
+              onChange={(e) => setSelectedSubject(e.target.value)}
+              className="form-select-enhanced"
+            >
+              <option value="">Select Subject</option>
+              {subjects.map((subject) => (
+                <option
+                  key={subject.subject_code}
+                  value={subject.subject_code}
+                >
+                  {subject.subject_name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </div>
+      </div>
 
-<Row>
-  <Col md={6} className="mb-3 chapter-dropdown" style={{ position: 'relative', zIndex: 9999 }}>
-    {/* Replace the old chapters selection with our new ExpandedChapterDropdown component with higher z-index */}
-    <ExpandedChapterDropdown
-      chapters={chapters}
-      selectedChapters={selectedChapters}
-      setSelectedChapters={setSelectedChapters}
-      disabled={!selectedSubject}
-      questionType={questionType}
-    />
-  </Col>
-  <Col md={6} className="mb-3">
-    <Form.Group controlId="formQuestionType">
-      <Form.Label>
-        <FontAwesomeIcon
-          icon={faClipboardQuestion}
-          className="me-2"
-        />
-        Question Type
-      </Form.Label>
-      <Form.Select
-        value={questionType}
-        onChange={(e) => setQuestionType(e.target.value)}
-        disabled={selectedChapters.length === 0}
-        className="form-select-enhanced"
-      >
-        <option value="">Select Question Type</option>
-        <option value="solved">Solved</option>
-        <option value="exercise">Exercise</option>
-        <option value="external">Set of Questions</option>
-      </Form.Select>
-    </Form.Group>
-  </Col>
-</Row>
-
-{/* Add a larger gap to prevent content overlap if dropdown expands */}
-<div style={{ height: '30px', clear: 'both' }}></div>
-
-{questionType === "external" && (
-  <Row>
-    <Col md={6} className="mb-3">
-      <Form.Group controlId="formQuestionLevel">
-        <Form.Label>
-          <FontAwesomeIcon
-            icon={faClipboardQuestion}
-            className="me-2"
+      <div className="form-row">
+        {/* Chapter Selection with improved dropdown */}
+        <div className="form-col">
+          <ImprovedChapterDropdown
+            chapters={chapters}
+            selectedChapters={selectedChapters}
+            setSelectedChapters={setSelectedChapters}
+            disabled={!selectedSubject}
+            questionType={questionType}
           />
-          Select The Set
-        </Form.Label>
-        <Form.Select
-          value={questionLevel}
-          onChange={(e) => setQuestionLevel(e.target.value)}
-          className="form-select-enhanced"
-        >
-          <option value="">Select The Set</option>
-          {subTopics.map((subTopic, index) => (
-            <option key={subTopic} value={subTopic}>
-              {`Exercise ${index + 1}`}
-            </option>
-          ))}
-        </Form.Select>
-      </Form.Group>
-    </Col>
-  </Row>
-)}
+        </div>
+        
+        {/* Question Type Selection */}
+        <div className="form-col">
+          <Form.Group controlId="formQuestionType">
+            <Form.Label>
+              <FontAwesomeIcon icon={faClipboardQuestion} className="me-2" />
+              Question Type
+            </Form.Label>
+            <Form.Select
+              value={questionType}
+              onChange={(e) => {
+                setQuestionType(e.target.value);
+                setQuestionLevel(""); // Reset the level when type changes
+              }}
+              disabled={selectedChapters.length === 0}
+              className="form-select-enhanced"
+            >
+              <option value="">Select Question Type</option>
+              <option value="solved">Solved</option>
+              <option value="exercise">Exercise</option>
+              <option value="external">Set of Questions</option>
+            </Form.Select>
+          </Form.Group>
+        </div>
+      </div>
 
-                <div className="d-flex justify-content-center mt-4">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="generate-questions-btn"
-                    disabled={!isGenerateButtonEnabled()}
-                  >
-                    <FontAwesomeIcon icon={faClipboardQuestion} className="me-2" />
-                    Generate Questions
-                  </Button>
-                </div>
-              </Form>
-            </Card.Body>
-          </Card>
+      {/* Add a larger gap to prevent content overlap if dropdown expands */}
+      <div style={{ height: '30px', clear: 'both' }}></div>
+
+      {/* Conditionally render the Set selection dropdown */}
+      {questionType === "external" && (
+        <div className="form-row">
+          <div className="form-col">
+            <Form.Group controlId="formQuestionLevel" className="set-selection-group">
+              <Form.Label>
+                <FontAwesomeIcon icon={faClipboardQuestion} className="me-2" />
+                Select The Set
+              </Form.Label>
+              <Form.Select
+                value={questionLevel}
+                onChange={(e) => setQuestionLevel(e.target.value)}
+                className="form-select-enhanced set-select-control"
+              >
+                <option value="">Select The Set</option>
+                {subTopics.map((subTopic, index) => (
+                  <option key={subTopic} value={subTopic}>
+                    {`Exercise ${index + 1}`}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          </div>
+        </div>
+      )}
+
+      <div className="d-flex justify-content-center mt-4">
+        <Button
+          variant="primary"
+          type="submit"
+          className="generate-questions-btn"
+          disabled={!isGenerateButtonEnabled()}
+        >
+          <FontAwesomeIcon icon={faClipboardQuestion} className="me-2" />
+          Generate Questions
+        </Button>
+      </div>
+    </Form>
+  </Card.Body>
+</Card>
+
+          {/* Session History Component */}
+          <SessionHistory />
 
           {/* Add a section separator to ensure proper spacing */}
           <div className="section-separator"></div>

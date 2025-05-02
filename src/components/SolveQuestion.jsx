@@ -66,6 +66,18 @@ function SolveQuestion() {
     image: question_image,
   });
 
+  // Capture start time when component mounts
+  useEffect(() => {
+    // Reset study session start time
+    setStudySessionStart(Date.now());
+    console.log("Study session started at:", new Date(studySessionStart).toISOString());
+    
+    // Clean-up function to handle component unmount without submission
+    return () => {
+      console.log("Study session ended without submission at:", new Date().toISOString());
+    };
+  }, []);
+
   // Tutorial steps for SolveQuestion page
   const tutorialSteps = [
     {
@@ -181,6 +193,7 @@ function SolveQuestion() {
 
       // Reset study session start time
       setStudySessionStart(Date.now());
+      console.log("New question study session started at:", new Date(Date.now()).toISOString());  
 
       // Reset other state
       setImages([]);
@@ -214,12 +227,40 @@ function SolveQuestion() {
     setUploadProgress(percent);
   };
 
-  // Handlers for different actions
-  const handleSubmit = () => sendFormData({ submit: true }, "submit");
+   // Calculate study time and update progress
+   const updateStudyTimeAndProgress = (action, accuracy = 100) => {
+    const endTime = Date.now();
+    const studyTimeInMinutes = Math.max(1, Math.round((endTime - studySessionStart) / 60000)); // Convert ms to minutes, min 1 minute
+    
+    console.log(`Study session for question ${currentQuestion.questionNumber} completed in ${studyTimeInMinutes} minutes`);
+    
+    // Format date as YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Update study session in ProgressContext
+    updateStudySession(today, studyTimeInMinutes, 1, accuracy);
+    
+    // Update quest progress
+    updateQuestProgress("daily_solve_questions", 1, QUEST_TYPES.DAILY);
+    
+    return studyTimeInMinutes;
+  };
 
-  const handleSolve = () => sendFormData({ solve: true }, "solve");
+  // Modified handlers for different actions to track study time
+  const handleSubmit = () => {
+    const studyTime = updateStudyTimeAndProgress("submit");
+    sendFormData({ submit: true, study_time: studyTime }, "submit");
+  };
 
-  const handleExplain = () => sendFormData({ explain: true }, "explain");
+  const handleSolve = () => {
+    const studyTime = updateStudyTimeAndProgress("solve");
+    sendFormData({ solve: true, study_time: studyTime }, "solve");
+  };
+
+  const handleExplain = () => {
+    const studyTime = updateStudyTimeAndProgress("explain");
+    sendFormData({ explain: true, study_time: studyTime }, "explain");
+  };
 
   // Enhanced handleCorrect function
   const handleCorrect = async () => {
@@ -227,13 +268,17 @@ function SolveQuestion() {
     setProcessingButton("correct");
     setError(null);
 
-    const formData = new FormData();
-    formData.append("class_id", class_id);
-    formData.append("subject_id", subject_id);
-    formData.append("topic_ids", topic_ids);
-    formData.append("question", currentQuestion.question);
-    formData.append("subtopic", subtopic);
-    formData.append("correct", true);
+     // Calculate study time
+     const studyTime = updateStudyTimeAndProgress("correct");
+
+     const formData = new FormData();
+     formData.append("class_id", class_id);
+     formData.append("subject_id", subject_id);
+     formData.append("topic_ids", topic_ids);
+     formData.append("question", currentQuestion.question);
+     formData.append("subtopic", subtopic);
+     formData.append("correct", true);
+     formData.append("study_time", studyTime);
 
     // Helper: finalize and send the form after appending everything
     const finalizeAndSendForm = async () => {
@@ -270,6 +315,7 @@ function SolveQuestion() {
             subtopic,
             questionImage: currentQuestion.image,
             questionNumber: currentQuestion.questionNumber,
+            study_time: studyTime,
           },
         });
 
@@ -359,9 +405,17 @@ function SolveQuestion() {
     formData.append("topic_ids", topic_ids);
     formData.append("question", currentQuestion.question);
     formData.append("subtopic", subtopic);
+
+     // Add study time to the form data
+     if (flags.study_time) {
+      formData.append("study_time", flags.study_time);
+    }
   
     Object.entries(flags).forEach(([key, value]) => {
-      formData.append(key, value);
+// Skip study_time as we've already added it
+if (key !== "study_time") {
+  formData.append(key, value);
+}
     });
   
     // Add images if required by the action
@@ -391,7 +445,7 @@ function SolveQuestion() {
       navigate("/resultpage", {
         state: {
           ...response.data,
-          actionType: "correct",
+          actionType: actionType,
           questionList,
           class_id,
           subject_id,
@@ -400,6 +454,7 @@ function SolveQuestion() {
           questionImage: currentQuestion.image,
           questionNumber: currentQuestion.questionNumber,
           selectedQuestions: selectedQuestions, // Pass selected questions to the result page
+          study_time: flags.study_time
         },
       });
     } catch (error) {
